@@ -12,7 +12,7 @@ extern I2C_HandleTypeDef hi2c2;
 /* EEPROM Address */
 /* Address = 7 bits
  * The 8th bit is the Read/Write bit (RW). This bit is set to 1 for read and 0 for write operations */
-#define EEPROM_ADDR 0x50 << 1
+#define EEPROM_ADDR 0x51 << 1
 #define EEPROM_ID_PAGE_ADDR 0x58 << 1;
 
 /* Define the Page Size and number of pages */
@@ -94,7 +94,6 @@ void EEPROM_Read (uint16_t page, uint16_t offset, uint8_t *data, uint16_t size)
 		offset=0;
 		size = size-bytesremaining;
 		pos += bytesremaining;
-
 	}
 	HAL_UART_Transmit(&hlpuart1, data, strlen((const char*)(data)), HAL_MAX_DELAY);
 	HAL_UART_Transmit(&hlpuart1, line, sizeof(line), HAL_MAX_DELAY);

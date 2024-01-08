@@ -23,6 +23,6 @@ typedef enum
 	NO_EEPROM_TEST = 7
 } EEPROM_CAN_Msgs;
 
-extern uint8_t EEPROM_CAN_Msg;
+extern uint32_t EEPROM_CAN_Msg;
 
 #endif // ENUMS_H

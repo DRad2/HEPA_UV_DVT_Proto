@@ -71,8 +71,8 @@ all: main-build
 main-build: HEPA_UV_DVT_Proto.elf secondary-outputs
 
 # Tool invocations
-HEPA_UV_DVT_Proto.elf HEPA_UV_DVT_Proto.map: $(OBJS) $(USER_OBJS) G:\Shared\ drives\Opentrons\Hardware\1\ -\ Hardware\ Engineering\1\ -\ NPI\ Programs\12\ -\ OT3\3\ -\ Electrical\15\ -\ HEPA_UV\Test\ Code\DVT\ PWM\ HEPA\STM32G491RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "HEPA_UV_DVT_Proto.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"G:\Shared drives\Opentrons\Hardware\1 - Hardware Engineering\1 - NPI Programs\12 - OT3\3 - Electrical\15 - HEPA_UV\Test Code\DVT PWM HEPA\STM32G491RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HEPA_UV_DVT_Proto.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+HEPA_UV_DVT_Proto.elf HEPA_UV_DVT_Proto.map: $(OBJS) $(USER_OBJS) G:\Shared\ drives\Opentrons\Hardware\1\ -\ Hardware\ Engineering\1\ -\ NPI\ Programs\12\ -\ OT3\3\ -\ Electrical\15\ -\ HEPA_UV\Test\ Code\DVT\STM32G491RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "HEPA_UV_DVT_Proto.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"G:\Shared drives\Opentrons\Hardware\1 - Hardware Engineering\1 - NPI Programs\12 - OT3\3 - Electrical\15 - HEPA_UV\Test Code\DVT\STM32G491RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HEPA_UV_DVT_Proto.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

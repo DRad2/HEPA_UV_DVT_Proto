@@ -121,7 +121,7 @@ uint8_t RxData[8];
 uint8_t TxData[8];
 FDCAN_RxHeaderTypeDef RxHeader;
 FDCAN_TxHeaderTypeDef TxHeader;
-uint8_t EEPROM_CAN_Msg;
+uint32_t EEPROM_CAN_Msg;
 
 /* The tasks to be created. */
 static void vHandlerTask( void *pvParameters );
@@ -1081,7 +1081,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 uint16_t interrupt_type;
 volatile uint16_t UV_IT_flag;
-uint8_t EEPROM_CAN_Msg;
+//uint32_t EEPROM_CAN_Msg;
 
 void UV_OFF()
 {
@@ -1384,10 +1384,9 @@ void StartDefaultTask(void const * argument)
 void StartCANTask(void const * argument)
 {
   /* USER CODE BEGIN StartTask02 */
-  uint8_t EEPROM_CAN_Msg = 0;
+  EEPROM_CAN_Msg = NO_EEPROM_TEST;
   uint8_t dataWrite[8];
   uint8_t datar1[100];
-  uint8_t line1[] = "\r\n";
 
   /* Infinite loop */
   for(;;)
@@ -1400,8 +1399,6 @@ void StartCANTask(void const * argument)
 	  	 		  {
 	  	 			  dataWrite[i] = (uint8_t)(rand() % 20);
 	  	 		  }
-	  	 		  //HAL_UART_Transmit(&hlpuart1, dataWrite, strlen((const char*)(dataWrite)), HAL_MAX_DELAY);
-	  	 		  //HAL_UART_Transmit(&hlpuart1, line1, sizeof(line1), HAL_MAX_DELAY);
 	  	 		  /* Write EEPROM */
 	  	 		  send_msg(dataWrite, 8);
 	  	 		  EEPROM_Write(0, 0, dataWrite, sizeof(dataWrite));
@@ -1410,7 +1407,7 @@ void StartCANTask(void const * argument)
 	  	 		  EEPROM_Read(0, 0, datar1, 8);
 	  	 		  send_msg(datar1, 8);
 
-	  	 		  EEPROM_CAN_Msg = 0;
+	  	 		  EEPROM_CAN_Msg = NO_EEPROM_TEST;
 
 	  	 		  /* Erase EEPROM */
 	  	 		  for (uint8_t i=0; i<251; i++)
